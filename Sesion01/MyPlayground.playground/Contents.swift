@@ -1,7 +1,6 @@
 import UIKit
 
 /*
- 
  ******************* DECLARACIÓN DE VARIABLES ********************
  
  Declaración explícita: Especificas el tipo de dato de la variable
@@ -10,7 +9,7 @@ import UIKit
  
  Declaración implícita: Dejas que Swift asuma o reconosca el tipo de dato de la variable
  var str = "Hello, playground"
- 
+          
  */
 
 var str1 = "Hello, playground"
