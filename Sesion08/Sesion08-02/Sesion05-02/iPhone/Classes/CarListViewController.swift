@@ -60,29 +60,20 @@ extension CarListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.4, options: .curveEaseOut) {
-            
-            let cell = tableView.cellForRow(at: indexPath) as? CarTableViewCell
-            cell?.selectStyle(true)
-            
-            self.view.layoutIfNeeded()
-            
-        } completion: { (_) in
-            
-            print("Termino la animación")
-        }
-
+        let cell = tableView.cellForRow(at: indexPath) as? CarTableViewCell
+        cell?.animateCellSelection()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        UIView.animate(withDuration: 0.3) {
-            
-            let cell = tableView.cellForRow(at: indexPath) as? CarTableViewCell
-            cell?.selectStyle(false)
+        let cell = tableView.cellForRow(at: indexPath) as? CarTableViewCell
+        cell?.animateCellDeselection()
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-            self.view.layoutIfNeeded()
-        }
+        let cell = tableView.cellForRow(at: indexPath) as? CarTableViewCell
+        return cell?.swipeActions
     }
 
 }
