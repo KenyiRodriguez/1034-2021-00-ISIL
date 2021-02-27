@@ -7,7 +7,8 @@
 
 import Foundation
 
-
+typealias JSON      = [String: Any]
+typealias JSONARRAY = [JSON]
 
 extension WebServiceManager {
     
@@ -40,7 +41,11 @@ class WebServiceManager {
             let task = urlSession.dataTask(with: urlRequest) { (data, urlResponse, error) in
                 let response = self.readResponse(data: data, urlResponse: urlResponse, error: error)
                 print(response)
-                responseService(response)
+                
+                DispatchQueue.main.async {
+                    responseService(response)
+                }
+                
             }
             
             task.resume()
@@ -50,7 +55,9 @@ class WebServiceManager {
             let task = urlSession.uploadTask(with: urlRequest, from: nil) { (data, urlResponse, error) in
                 let response = self.readResponse(data: data, urlResponse: urlResponse, error: error)
                 print(response)
-                responseService(response)
+                DispatchQueue.main.async {
+                    responseService(response)
+                }
             }
             
             task.resume()
